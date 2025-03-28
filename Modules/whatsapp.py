@@ -5,6 +5,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 import urllib
 import time
 import random
@@ -39,7 +40,7 @@ def enviar_mensagem(numero, texto, nome):
     while len(navegador.find_elements(By.ID, 'side')) < 1:
         # Se a lista estiver vazia, espere até aparecer algum elemento.
         time.sleep(1)
-    time.sleep(2)
+    time.sleep(4)
 
 
     # Verifica se o número é válido.

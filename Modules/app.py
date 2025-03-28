@@ -120,7 +120,8 @@ mensagens_field = ft.TextField(
     value="|".join(textos),
     width=600,
     multiline=True,
-    max_lines=30
+    max_lines=None,
+    expand=True
 )
 
 # Status inicial.
@@ -130,61 +131,98 @@ status = ft.Text("Esperando planilha disparos...", text_align=ft.TextAlign.CENTE
 def main_page():
     return ft.View(
         "/main",
+        scroll=ft.ScrollMode.AUTO,
         controls=[
             ft.Column(
                 [
-                    # Texto do título.
-                    ft.Row(
-                        [titulo_text],
-                        alignment=ft.MainAxisAlignment.CENTER,
+                    # Cabeçalho
+                    ft.Row([titulo_text], alignment=ft.MainAxisAlignment.CENTER),
+                    ft.Container(height=20),
+                    
+                    # Área de configurações com largura fixa
+                    ft.Container(
+                        width=700,  # Largura fixa para alinhamento
+                        content=ft.Column(
+                            [
+                                ft.Card(
+                                    content=ft.Container(
+                                        content=ft.Column(
+                                            [
+                                                ft.Text("Configurações de Envio:", 
+                                                       weight=ft.FontWeight.BOLD,
+                                                       text_align=ft.TextAlign.CENTER),
+                                                ft.Row(
+                                                    [delay_min_field, delay_max_field],
+                                                    alignment=ft.MainAxisAlignment.CENTER
+                                                ),
+                                                ft.Row(
+                                                    [delay_min_contador_field, delay_max_contador_field],
+                                                    alignment=ft.MainAxisAlignment.CENTER
+                                                ),
+                                                ft.Container(contador_field, alignment=ft.alignment.center),
+                                                mensagens_field
+                                            ],
+                                            spacing=10,
+                                            scroll=ft.ScrollMode.AUTO,
+                                        ),
+                                        padding=20,
+                                    ),
+                                ),
+                            ],
+                            expand=True,
+                            scroll=ft.ScrollMode.AUTO,
+                        ),
                     ),
-                    ft.Container(height=50),
-                    # Seção de configurações
-                    ft.Card(
-                        content=ft.Container(
-                            content=ft.Column(
-                                [
-                                    ft.Text("Configurações de Envio:", weight=ft.FontWeight.BOLD),
-                                    ft.Row([delay_min_field, delay_max_field]),
-                                    ft.Row([delay_min_contador_field, delay_max_contador_field]),
-                                    contador_field,
-                                    mensagens_field
-                                ],
-                                spacing=10
-                            ),
-                            padding=20,
-                            width=650
-                        )
+                    
+                    # Área de botões e status com a MESMA largura
+                    ft.Container(
+                        width=700,  # Mesma largura do card de configurações
+                        content=ft.Column(
+                            [
+                                ft.Row(
+                                    [upload_button, executar_button],
+                                    alignment=ft.MainAxisAlignment.CENTER,
+                                    spacing=50
+                                ),
+                                ft.Container(height=20),
+                                ft.Card(
+                                    content=ft.Container(
+                                        content=ft.Column(
+                                            [
+                                                ft.Text("Status:", 
+                                                       weight=ft.FontWeight.BOLD,
+                                                       text_align=ft.TextAlign.CENTER),
+                                                status,
+                                            ],
+                                            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                        ),
+                                        padding=20,
+                                        alignment=ft.alignment.center,
+                                    ),
+                                ),
+                            ],
+                            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                        ),
                     ),
-                    # Faixa dos botões.
-                    ft.Row(
-                        [upload_button, executar_button],
-                        alignment=ft.MainAxisAlignment.CENTER,
-                    ),
-                    ft.Container(height=26),
-                    # Card com informações.
-                    ft.Card(
-                        content=ft.Container(
-                            content=ft.Column(
-                                [
-                                    ft.Text("Status:"),  # Rótulo "Status"
-                                    status,  # Texto de status centralizado
-                                ]
-                            ),
-                            width=500,
-                            padding=10,
-                        )
-                    ),
-                    ft.Container(height=200),
                 ],
-                alignment=ft.MainAxisAlignment.CENTER,
-                horizontal_alignment=ft.CrossAxisAlignment.CENTER
+                expand=True,
+                spacing=20,
+                scroll=ft.ScrollMode.AUTO,
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             )
         ]
     )
 
 # Função principal para gerenciar as views.
 def main(page: ft.Page):
+
+    page.title = "Disparador WhatsApp"
+    page.window_width = 800
+    page.window_height = 700
+    page.window_min_width = 600
+    page.window_min_height = 600
+    page.padding = 20
+    page.scroll = ft.ScrollMode.AUTO
 
     # Função para upload do arquivo.
     def upload_file_result(e: ft.FilePickerResultEvent):
@@ -255,7 +293,6 @@ def main(page: ft.Page):
     # Associando funções aos botões.
     upload_button.on_click = lambda e: file_picker.pick_files(
         allow_multiple = False,
-        # allowed_extensions = ["xlsx", "xls"]
         allowed_extensions = ["csv"]
         )
     executar_button.on_click = execute_file
