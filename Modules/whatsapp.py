@@ -59,8 +59,8 @@ def envio_em_massa(df ,textos, DELAY_MIN, DELAY_MAX, DELAY_MINCONTADOR, DELAY_MA
     
     for index, row in df.iterrows():
 
-        numero = str(row['Numero'])
-        nome = str(row['Nome'])
+        numero = str(row['numero'])
+        nome = str(row['nome'])
 
         enviar_mensagem(numero, random.choice(textos), nome)
 

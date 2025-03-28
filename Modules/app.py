@@ -29,10 +29,23 @@ def formatar_coluna(numeros):
 
     numeros = numeros.replace("-", "")
 
-    if numeros.nostartswith("55"):
+    if not numeros.startswith("55"):
         numeros = "55" + numeros
                 
     return numeros
+
+def processar_textos(texto_campo):
+    """
+    Processa o texto do campo separado por |, removendo apenas espaços extras indesejados,
+    mas preservando quebras de linha e formatação intencional.
+    """
+    textos = []
+    for texto in texto_campo.split("|"):
+        # Remove espaços no início e final, mas preserva quebras de linha e espaços internos
+        texto = texto.strip(' \t')  # Remove apenas espaços e tabs do início/fim
+        if texto:  # Ignora strings vazias
+            textos.append(texto)
+    return textos
 
 # Componentes.
 # Título do app.
@@ -103,11 +116,11 @@ contador_field = ft.TextField(
 )
 
 mensagens_field = ft.TextField(
-    label="Mensagens (separadas por '|')",
+    label="Mensagens (separadas por '|'). Coloque (nome) para substituir pelo nome do cliente.",
     value="|".join(textos),
-    width=500,
+    width=600,
     multiline=True,
-    max_lines=10
+    max_lines=30
 )
 
 # Status inicial.
@@ -140,7 +153,7 @@ def main_page():
                                 spacing=10
                             ),
                             padding=20,
-                            width=600
+                            width=650
                         )
                     ),
                     # Faixa dos botões.
@@ -184,7 +197,7 @@ def main(page: ft.Page):
             file_path = e.files[0].path
 
             try:
-                planilha = pd.ExcelFile(file_path)
+                planilha = pd.read_csv(file_path)
                 is_uploaded = True
                 status.value = "Arquivo carregado com sucesso!"
                 status.update()
@@ -199,6 +212,20 @@ def main(page: ft.Page):
 
             status.value = "Processando arquivo..."
             status.update()
+            # Verificar se as colunas necessárias existem
+            if 'numero' not in planilha.columns or 'nome' not in planilha.columns:
+                status.value = "Planilha deve conter colunas 'numero' e 'nome'"
+                status.update()
+                return
+
+            textos = processar_textos(mensagens_field.value)
+
+            # Verifica se há textos válidos
+            if not textos:
+                status.value = "Nenhuma mensagem válida encontrada!"
+                status.update()
+                return
+
             # Faz a formatação dos numeros.
             planilha["numero"] = planilha["numero"].apply(formatar_coluna)
             status.value = "Planilha formatada com sucesso!"
@@ -212,6 +239,7 @@ def main(page: ft.Page):
             status.update()
 
             status.value = "Enviando mensagens..."
+            status.update()
             wp.envio_em_massa(planilha, textos, DELAY_MIN, DELAY_MAX, DELAY_MINCONTADOR, DELAY_MAXCONTADOR, CONTADOR)
 
             status.value = "Planilha processada com sucesso!"
@@ -227,7 +255,8 @@ def main(page: ft.Page):
     # Associando funções aos botões.
     upload_button.on_click = lambda e: file_picker.pick_files(
         allow_multiple = False,
-        allowed_extensions = ["xlsx", "xls"]
+        # allowed_extensions = ["xlsx", "xls"]
+        allowed_extensions = ["csv"]
         )
     executar_button.on_click = execute_file
 
