@@ -69,12 +69,12 @@ tutorial_text = ft.Text(
 # Botões.
 upload_button = ft.ElevatedButton(
     "Upload",
-    icon=ft.icons.UPLOAD_FILE,
+    icon=ft.Icons.UPLOAD_FILE,
 )
 
 executar_button = ft.ElevatedButton(
     "Executar",
-    icon=ft.icons.PLAY_CIRCLE_FILLED
+    icon=ft.Icons.PLAY_CIRCLE
 )
 
 # UI Componets de parâmetros.
@@ -248,6 +248,15 @@ def main(page: ft.Page):
         global is_uploaded
         if is_uploaded:
 
+            try:
+                current_delay_min = int(delay_min_field.value)  
+                current_delay_max = int(delay_max_field.value)
+                current_delay_min_contador = int(delay_min_contador_field.value)
+                current_delay_max_contador = int(delay_max_contador_field.value)
+                current_contador = int(contador_field.value)
+            except ValueError:
+                status.value = "Valores inválidos para os delays ou contador!"
+
             status.value = "Processando arquivo..."
             status.update()
             # Verificar se as colunas necessárias existem
@@ -278,7 +287,15 @@ def main(page: ft.Page):
 
             status.value = "Enviando mensagens..."
             status.update()
-            wp.envio_em_massa(planilha, textos, DELAY_MIN, DELAY_MAX, DELAY_MINCONTADOR, DELAY_MAXCONTADOR, CONTADOR)
+            wp.envio_em_massa(
+                planilha, 
+                textos, 
+                current_delay_min, 
+                current_delay_max, 
+                current_delay_min_contador, 
+                current_delay_max_contador, 
+                current_contador
+                )
 
             status.value = "Planilha processada com sucesso!"
             status.update()

@@ -9,9 +9,30 @@ from selenium.webdriver.chrome.options import Options
 import urllib
 import time
 import random
-import whatsapp as wp
+import csv
+import os
 
 global navegador
+
+def registrar_mensagem(numero, status, erro="sem erros"):
+    # Certifica se há um diretório "Output", se não, cria um.
+    os.makedirs('Output', exist_ok=True)
+    # Define o caminho do arquivo.
+    pathOutput = os.path.join('Output', 'log.csv')
+    # Titulos do arquivo csv.
+    titulos = ['Numero', 'Status', 'Erro']
+    
+    mensagem = [numero, status, erro]
+
+    with open(pathOutput, mode='a', encoding='utf-8', newline='') as file:
+        # Cria um objeto writer para escrever no arquivo CSV.
+        writer = csv.writer(file)
+        # Verifica se o arquivo já existe. Se não existir, escreve os títulos.
+        if not os.path.exists(pathOutput):
+            writer.writerow(titulos)
+        
+        # Escreve a mensagem no arquivo.
+        writer.writerow(mensagem)
 
 def abrir_whatsapp():
     global navegador
@@ -40,7 +61,7 @@ def enviar_mensagem(numero, texto, nome):
     while len(navegador.find_elements(By.ID, 'side')) < 1:
         # Se a lista estiver vazia, espere até aparecer algum elemento.
         time.sleep(1)
-    time.sleep(4)
+    time.sleep(6)
 
 
     # Verifica se o número é válido.
@@ -48,11 +69,17 @@ def enviar_mensagem(numero, texto, nome):
         if len(navegador.find_elements(By.XPATH, '//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[1]')) < 1:
             # Procura o botão de enviar de efetua o click.
             navegador.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[2]/button/span').click()
-            print(f"{numero}, enviado, sem erros")
+            mensagem = f"{numero}, enviado, sem erros"
+            print(mensagem)
+            registrar_mensagem(numero, "enviado", "sem erros")
         else:
-            print(f"{numero}, numero inválido, sem erros")
+            mensagem = f"{numero}, numero inválido, sem erros"
+            print(mensagem)
+            registrar_mensagem(numero, "não enviado", "sem erros")
     except Exception as e:
-        print(f"{numero}, erro no envio, {e}")
+        mensagem = f"{numero}, erro no envio, {e}"
+        print(mensagem)
+        registrar_mensagem(numero, "não enviado", e)
 
 def envio_em_massa(df ,textos, DELAY_MIN, DELAY_MAX, DELAY_MINCONTADOR, DELAY_MAXCONTADOR, CONTADOR):
     
