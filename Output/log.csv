@@ -1,3 +1,54 @@
-559481452268,enviado,sem erros
+559481885828,não enviado,"Message: no such element: Unable to locate element: {""method"":""xpath"",""selector"":""//*[@id=""app""]/div/div[3]/div/div[2]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div""}
+  (Session info: chrome=135.0.7049.97); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6AF80EFA5+77893]
+	GetHandleVerifier [0x00007FF6AF80F000+77984]
+	(No symbol) [0x00007FF6AF5D91BA]
+	(No symbol) [0x00007FF6AF62F16D]
+	(No symbol) [0x00007FF6AF62F41C]
+	(No symbol) [0x00007FF6AF682237]
+	(No symbol) [0x00007FF6AF65716F]
+	(No symbol) [0x00007FF6AF67F07F]
+	(No symbol) [0x00007FF6AF656F03]
+	(No symbol) [0x00007FF6AF620328]
+	(No symbol) [0x00007FF6AF621093]
+	GetHandleVerifier [0x00007FF6AFAC7B6D+2931725]
+	GetHandleVerifier [0x00007FF6AFAC2132+2908626]
+	GetHandleVerifier [0x00007FF6AFAE00F3+3031443]
+	GetHandleVerifier [0x00007FF6AF8291EA+184970]
+	GetHandleVerifier [0x00007FF6AF83086F+215311]
+	GetHandleVerifier [0x00007FF6AF816EC4+110436]
+	GetHandleVerifier [0x00007FF6AF817072+110866]
+	GetHandleVerifier [0x00007FF6AF7FD479+5401]
+	BaseThreadInitThunk [0x00007FFD8E42E8D7+23]
+	RtlUserThreadStart [0x00007FFD903D14FC+44]
+"
 55948145226,não enviado,sem erros
-559481308780,enviado,sem erros
+559492297806,não enviado,"Message: no such element: Unable to locate element: {""method"":""xpath"",""selector"":""//*[@id=""app""]/div/div[3]/div/div[2]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div""}
+  (Session info: chrome=135.0.7049.97); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6AF80EFA5+77893]
+	GetHandleVerifier [0x00007FF6AF80F000+77984]
+	(No symbol) [0x00007FF6AF5D91BA]
+	(No symbol) [0x00007FF6AF62F16D]
+	(No symbol) [0x00007FF6AF62F41C]
+	(No symbol) [0x00007FF6AF682237]
+	(No symbol) [0x00007FF6AF65716F]
+	(No symbol) [0x00007FF6AF67F07F]
+	(No symbol) [0x00007FF6AF656F03]
+	(No symbol) [0x00007FF6AF620328]
+	(No symbol) [0x00007FF6AF621093]
+	GetHandleVerifier [0x00007FF6AFAC7B6D+2931725]
+	GetHandleVerifier [0x00007FF6AFAC2132+2908626]
+	GetHandleVerifier [0x00007FF6AFAE00F3+3031443]
+	GetHandleVerifier [0x00007FF6AF8291EA+184970]
+	GetHandleVerifier [0x00007FF6AF83086F+215311]
+	GetHandleVerifier [0x00007FF6AF816EC4+110436]
+	GetHandleVerifier [0x00007FF6AF817072+110866]
+	GetHandleVerifier [0x00007FF6AF7FD479+5401]
+	BaseThreadInitThunk [0x00007FFD8E42E8D7+23]
+	RtlUserThreadStart [0x00007FFD903D14FC+44]
+"
+559481885828,enviado,sem erros
+55948145226,não enviado,sem erros
+559492297806,enviado,sem erros

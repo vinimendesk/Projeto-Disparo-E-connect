@@ -14,6 +14,10 @@ is_uploaded = False
 global planilha
 # Variável que armazena o caminho da planilha.
 global file_path
+# Variável que armazena o caminho da imagem.
+global image_path
+# Variável que determina se o disparador vai enviar imagem ou não.
+global image
 
 # Parâmetros padrão.
 DELAY_MIN = 120
@@ -31,7 +35,7 @@ def formatar_coluna(numeros):
 
     if not numeros.startswith("55"):
         numeros = "55" + numeros
-                
+
     return numeros
 
 def processar_textos(texto_campo):
@@ -70,6 +74,11 @@ tutorial_text = ft.Text(
 upload_button = ft.ElevatedButton(
     "Upload",
     icon=ft.Icons.UPLOAD_FILE,
+)
+
+image_button = ft.ElevatedButton(
+    "Imagem",
+    icon=ft.Icons.IMAGE,
 )
 
 executar_button = ft.ElevatedButton(
@@ -180,7 +189,7 @@ def main_page():
                         content=ft.Column(
                             [
                                 ft.Row(
-                                    [upload_button, executar_button],
+                                    [upload_button, executar_button, image_button],
                                     alignment=ft.MainAxisAlignment.CENTER,
                                     spacing=50
                                 ),
@@ -242,6 +251,21 @@ def main(page: ft.Page):
             except Exception as err:
                 status.value = f"Erro ao processar o arquivo: {err}"
                 status.update()
+
+    # Função para upload de imagem.
+    def upload_image(e: ft.FilePickerResultEvent):
+        global image
+        global image_path
+        # Se arquivo encontrado.
+        if e.files:
+            # Obtém o caminho do arquivo selecionado.
+            image_path = e.files[0].path
+            image = True
+            status.value = "Imagem carregada com sucesso!"
+            status.update()
+        else:
+            status.value = "Erro ao carregar a imagem!"
+            status.update()
     
     # Função para fazer a limpeza da planilha.
     def execute_file(e):
@@ -272,7 +296,9 @@ def main(page: ft.Page):
                 status.value = "Nenhuma mensagem válida encontrada!"
                 status.update()
                 return
-
+            
+            # Converter números para string (sem formatação adicional)
+            planilha["numero"] = planilha["numero"].astype(str).str.strip()
             # Faz a formatação dos numeros.
             planilha["numero"] = planilha["numero"].apply(formatar_coluna)
             status.value = "Planilha formatada com sucesso!"
@@ -294,7 +320,9 @@ def main(page: ft.Page):
                 current_delay_max, 
                 current_delay_min_contador, 
                 current_delay_max_contador, 
-                current_contador
+                current_contador,
+                image_path,
+                image
                 )
 
             status.value = "Planilha processada com sucesso!"
@@ -306,16 +334,22 @@ def main(page: ft.Page):
 
     #Cria o FilePicker para selecionar os arquivos.
     file_picker = ft.FilePicker(on_result=upload_file_result)
+    file_picker_image = ft.FilePicker(on_result=upload_image)
 
     # Associando funções aos botões.
     upload_button.on_click = lambda e: file_picker.pick_files(
         allow_multiple = False,
         allowed_extensions = ["csv"]
         )
+    image_button.on_click = lambda e: file_picker_image.pick_files(
+        allow_multiple = False,
+        allowed_extensions = ["jpg", "jpeg", "png"]
+        )
     executar_button.on_click = execute_file
 
     # Configurando a página inicial.
     page.overlay.append(file_picker)
+    page.overlay.append(file_picker_image)
     page.views.append(main_page())
     page.update()
 

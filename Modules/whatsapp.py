@@ -44,7 +44,7 @@ def abrir_whatsapp():
         # Se a lista estiver vazia, espere até aparecer algum elemento.
         time.sleep(1)
 
-def enviar_mensagem(numero, texto, nome):
+def enviar_mensagem(numero, texto, nome, midia, imagem):
 
     # Procura
     nomeSubstituir = "(nome)"
@@ -61,12 +61,24 @@ def enviar_mensagem(numero, texto, nome):
     while len(navegador.find_elements(By.ID, 'side')) < 1:
         # Se a lista estiver vazia, espere até aparecer algum elemento.
         time.sleep(1)
-    time.sleep(6)
+    time.sleep(10)
 
 
     # Verifica se o número é válido.
     try:
         if len(navegador.find_elements(By.XPATH, '//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[1]')) < 1:
+            
+            if imagem:
+                navegador.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[1]/div/button').click()
+                '''attach = navegador.find_element(By.XPATH, '//*[@id="app"]/div/span[5]/div/ul/div/div/div[2]/li')
+                attach.send_keys(midia)
+                time.sleep(3)'''
+                file_input = navegador.find_element(By.CSS_SELECTOR, "input[type='file']")
+                file_input.send_keys(midia)
+                time.sleep(3)
+                send = navegador.find_element(By.XPATH, '//*[@id="app"]/div/div[3]/div/div[2]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div')
+                send.click()
+                time.sleep(3)
             # Procura o botão de enviar de efetua o click.
             navegador.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[2]/button/span').click()
             mensagem = f"{numero}, enviado, sem erros"
@@ -81,7 +93,7 @@ def enviar_mensagem(numero, texto, nome):
         print(mensagem)
         registrar_mensagem(numero, "não enviado", e)
 
-def envio_em_massa(df ,textos, DELAY_MIN, DELAY_MAX, DELAY_MINCONTADOR, DELAY_MAXCONTADOR, CONTADOR):
+def envio_em_massa(df ,textos, DELAY_MIN, DELAY_MAX, DELAY_MINCONTADOR, DELAY_MAXCONTADOR, CONTADOR, midia, imagem):
     
     contador = 0
     
@@ -90,7 +102,7 @@ def envio_em_massa(df ,textos, DELAY_MIN, DELAY_MAX, DELAY_MINCONTADOR, DELAY_MA
         numero = str(row['numero'])
         nome = str(row['nome'])
 
-        enviar_mensagem(numero, random.choice(textos), nome)
+        enviar_mensagem(numero, random.choice(textos), nome, midia, imagem)
 
         # Valor aleatório entre 2 minutos e 5 minutos.
         time.sleep(random.randint(DELAY_MIN, DELAY_MAX))
