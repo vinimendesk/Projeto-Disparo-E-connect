@@ -18,6 +18,12 @@ global file_path
 global image_path
 # Variável que determina se o disparador vai enviar imagem ou não.
 global image
+# Variável que armazena o caminho do documento.
+global document_path
+# Variável que determina se o disparador vai enviar o documento ou não.
+global document
+# Variável que armazena o path de ambos os documentos.
+global path
 
 # Parâmetros padrão.
 DELAY_MIN = 120
@@ -79,6 +85,11 @@ upload_button = ft.ElevatedButton(
 image_button = ft.ElevatedButton(
     "Imagem",
     icon=ft.Icons.IMAGE,
+)
+
+document_button = ft.ElevatedButton(
+    "Documento",
+    icon=ft.Icons.DOCUMENT_SCANNER_OUTLINED,
 )
 
 executar_button = ft.ElevatedButton(
@@ -189,7 +200,7 @@ def main_page():
                         content=ft.Column(
                             [
                                 ft.Row(
-                                    [upload_button, executar_button, image_button],
+                                    [upload_button, executar_button, image_button, document_button],
                                     alignment=ft.MainAxisAlignment.CENTER,
                                     spacing=50
                                 ),
@@ -254,17 +265,38 @@ def main(page: ft.Page):
 
     # Função para upload de imagem.
     def upload_image(e: ft.FilePickerResultEvent):
+        global document
         global image
         global image_path
+        global path
         # Se arquivo encontrado.
         if e.files:
             # Obtém o caminho do arquivo selecionado.
-            image_path = e.files[0].path
+            path = e.files[0].path
             image = True
+            document = False
             status.value = "Imagem carregada com sucesso!"
             status.update()
         else:
             status.value = "Erro ao carregar a imagem!"
+            status.update()
+
+    # Função para upload de imagem.
+    def upload_document(e: ft.FilePickerResultEvent):
+        global image
+        global document
+        global document_path
+        global path
+        # Se arquivo encontrado.
+        if e.files:
+            # Obtém o caminho do arquivo selecionado.
+            path = e.files[0].path
+            document = True
+            image = False
+            status.value = "Documento carregado com sucesso!"
+            status.update()
+        else:
+            status.value = "Erro ao carregar o documento!"
             status.update()
     
     # Função para fazer a limpeza da planilha.
@@ -321,8 +353,9 @@ def main(page: ft.Page):
                 current_delay_min_contador, 
                 current_delay_max_contador, 
                 current_contador,
-                image_path,
-                image
+                image,
+                document,
+                path
                 )
 
             status.value = "Planilha processada com sucesso!"
@@ -335,6 +368,7 @@ def main(page: ft.Page):
     #Cria o FilePicker para selecionar os arquivos.
     file_picker = ft.FilePicker(on_result=upload_file_result)
     file_picker_image = ft.FilePicker(on_result=upload_image)
+    file_picker_document = ft.FilePicker(on_result=upload_document)
 
     # Associando funções aos botões.
     upload_button.on_click = lambda e: file_picker.pick_files(
@@ -345,11 +379,21 @@ def main(page: ft.Page):
         allow_multiple = False,
         allowed_extensions = ["jpg", "jpeg", "png"]
         )
+    document_button.on_click = lambda e: file_picker_document.pick_files(
+    allow_multiple=False,
+    allowed_extensions=[
+        "pdf", "doc", "docx", "xls", "xlsx", "csv", "txt", "ppt", "pptx",
+        "jpg", "jpeg", "png", "bmp", "gif",
+        "mp4", "3gp", "mov", "avi", "mkv",
+        "mp3", "ogg", "wav", "aac"
+        ]
+    )   
     executar_button.on_click = execute_file
 
     # Configurando a página inicial.
     page.overlay.append(file_picker)
     page.overlay.append(file_picker_image)
+    page.overlay.append(file_picker_document)
     page.views.append(main_page())
     page.update()
 

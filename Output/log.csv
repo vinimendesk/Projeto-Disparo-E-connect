@@ -52,3 +52,148 @@ Stacktrace:
 559481885828,enviado,sem erros
 55948145226,não enviado,sem erros
 559492297806,enviado,sem erros
+559481885828,enviado,sem erros
+55948145226,não enviado,sem erros
+559492297806,enviado,sem erros
+559481885828,não enviado,"Message: invalid selector: An invalid or illegal selector was specified
+  (Session info: chrome=135.0.7049.97); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF60D4DEFA5+77893]
+	GetHandleVerifier [0x00007FF60D4DF000+77984]
+	(No symbol) [0x00007FF60D2A91BA]
+	(No symbol) [0x00007FF60D2B0AEC]
+	(No symbol) [0x00007FF60D2B3B5C]
+	(No symbol) [0x00007FF60D2B3C2F]
+	(No symbol) [0x00007FF60D2FEA17]
+	(No symbol) [0x00007FF60D2FF41C]
+	(No symbol) [0x00007FF60D352237]
+	(No symbol) [0x00007FF60D32716F]
+	(No symbol) [0x00007FF60D34F07F]
+	(No symbol) [0x00007FF60D326F03]
+	(No symbol) [0x00007FF60D2F0328]
+	(No symbol) [0x00007FF60D2F1093]
+	GetHandleVerifier [0x00007FF60D797B6D+2931725]
+	GetHandleVerifier [0x00007FF60D792132+2908626]
+	GetHandleVerifier [0x00007FF60D7B00F3+3031443]
+	GetHandleVerifier [0x00007FF60D4F91EA+184970]
+	GetHandleVerifier [0x00007FF60D50086F+215311]
+	GetHandleVerifier [0x00007FF60D4E6EC4+110436]
+	GetHandleVerifier [0x00007FF60D4E7072+110866]
+	GetHandleVerifier [0x00007FF60D4CD479+5401]
+	BaseThreadInitThunk [0x00007FFD8E42E8D7+23]
+	RtlUserThreadStart [0x00007FFD903D14FC+44]
+"
+55948145226,não enviado,sem erros
+559492297806,não enviado,"Message: invalid selector: An invalid or illegal selector was specified
+  (Session info: chrome=135.0.7049.97); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF60D4DEFA5+77893]
+	GetHandleVerifier [0x00007FF60D4DF000+77984]
+	(No symbol) [0x00007FF60D2A91BA]
+	(No symbol) [0x00007FF60D2B0AEC]
+	(No symbol) [0x00007FF60D2B3B5C]
+	(No symbol) [0x00007FF60D2B3C2F]
+	(No symbol) [0x00007FF60D2FEA17]
+	(No symbol) [0x00007FF60D2FF41C]
+	(No symbol) [0x00007FF60D352237]
+	(No symbol) [0x00007FF60D32716F]
+	(No symbol) [0x00007FF60D34F07F]
+	(No symbol) [0x00007FF60D326F03]
+	(No symbol) [0x00007FF60D2F0328]
+	(No symbol) [0x00007FF60D2F1093]
+	GetHandleVerifier [0x00007FF60D797B6D+2931725]
+	GetHandleVerifier [0x00007FF60D792132+2908626]
+	GetHandleVerifier [0x00007FF60D7B00F3+3031443]
+	GetHandleVerifier [0x00007FF60D4F91EA+184970]
+	GetHandleVerifier [0x00007FF60D50086F+215311]
+	GetHandleVerifier [0x00007FF60D4E6EC4+110436]
+	GetHandleVerifier [0x00007FF60D4E7072+110866]
+	GetHandleVerifier [0x00007FF60D4CD479+5401]
+	BaseThreadInitThunk [0x00007FFD8E42E8D7+23]
+	RtlUserThreadStart [0x00007FFD903D14FC+44]
+"
+559481885828,não enviado,"Message: invalid selector: An invalid or illegal selector was specified
+  (Session info: chrome=135.0.7049.97); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6C5BEEFA5+77893]
+	GetHandleVerifier [0x00007FF6C5BEF000+77984]
+	(No symbol) [0x00007FF6C59B91BA]
+	(No symbol) [0x00007FF6C59C0AEC]
+	(No symbol) [0x00007FF6C59C3B5C]
+	(No symbol) [0x00007FF6C59C3C2F]
+	(No symbol) [0x00007FF6C5A0EA17]
+	(No symbol) [0x00007FF6C5A0F41C]
+	(No symbol) [0x00007FF6C5A62237]
+	(No symbol) [0x00007FF6C5A3716F]
+	(No symbol) [0x00007FF6C5A5F07F]
+	(No symbol) [0x00007FF6C5A36F03]
+	(No symbol) [0x00007FF6C5A00328]
+	(No symbol) [0x00007FF6C5A01093]
+	GetHandleVerifier [0x00007FF6C5EA7B6D+2931725]
+	GetHandleVerifier [0x00007FF6C5EA2132+2908626]
+	GetHandleVerifier [0x00007FF6C5EC00F3+3031443]
+	GetHandleVerifier [0x00007FF6C5C091EA+184970]
+	GetHandleVerifier [0x00007FF6C5C1086F+215311]
+	GetHandleVerifier [0x00007FF6C5BF6EC4+110436]
+	GetHandleVerifier [0x00007FF6C5BF7072+110866]
+	GetHandleVerifier [0x00007FF6C5BDD479+5401]
+	BaseThreadInitThunk [0x00007FFD8E42E8D7+23]
+	RtlUserThreadStart [0x00007FFD903D14FC+44]
+"
+55948145226,não enviado,sem erros
+559492297806,não enviado,"Message: element not interactable
+  (Session info: chrome=135.0.7049.97)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6C5BEEFA5+77893]
+	GetHandleVerifier [0x00007FF6C5BEF000+77984]
+	(No symbol) [0x00007FF6C59B8FEC]
+	(No symbol) [0x00007FF6C5A10624]
+	(No symbol) [0x00007FF6C5A02134]
+	(No symbol) [0x00007FF6C5A3712A]
+	(No symbol) [0x00007FF6C5A019E6]
+	(No symbol) [0x00007FF6C5A37340]
+	(No symbol) [0x00007FF6C5A5F07F]
+	(No symbol) [0x00007FF6C5A36F03]
+	(No symbol) [0x00007FF6C5A00328]
+	(No symbol) [0x00007FF6C5A01093]
+	GetHandleVerifier [0x00007FF6C5EA7B6D+2931725]
+	GetHandleVerifier [0x00007FF6C5EA2132+2908626]
+	GetHandleVerifier [0x00007FF6C5EC00F3+3031443]
+	GetHandleVerifier [0x00007FF6C5C091EA+184970]
+	GetHandleVerifier [0x00007FF6C5C1086F+215311]
+	GetHandleVerifier [0x00007FF6C5BF6EC4+110436]
+	GetHandleVerifier [0x00007FF6C5BF7072+110866]
+	GetHandleVerifier [0x00007FF6C5BDD479+5401]
+	BaseThreadInitThunk [0x00007FFD8E42E8D7+23]
+	RtlUserThreadStart [0x00007FFD903D14FC+44]
+"
+559481885828,não enviado,"Message: invalid selector: An invalid or illegal selector was specified
+  (Session info: chrome=135.0.7049.97); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF67406EFA5+77893]
+	GetHandleVerifier [0x00007FF67406F000+77984]
+	(No symbol) [0x00007FF673E391BA]
+	(No symbol) [0x00007FF673E40AEC]
+	(No symbol) [0x00007FF673E43B5C]
+	(No symbol) [0x00007FF673E43C2F]
+	(No symbol) [0x00007FF673E8EA17]
+	(No symbol) [0x00007FF673E8F41C]
+	(No symbol) [0x00007FF673EE2237]
+	(No symbol) [0x00007FF673EB716F]
+	(No symbol) [0x00007FF673EDF07F]
+	(No symbol) [0x00007FF673EB6F03]
+	(No symbol) [0x00007FF673E80328]
+	(No symbol) [0x00007FF673E81093]
+	GetHandleVerifier [0x00007FF674327B6D+2931725]
+	GetHandleVerifier [0x00007FF674322132+2908626]
+	GetHandleVerifier [0x00007FF6743400F3+3031443]
+	GetHandleVerifier [0x00007FF6740891EA+184970]
+	GetHandleVerifier [0x00007FF67409086F+215311]
+	GetHandleVerifier [0x00007FF674076EC4+110436]
+	GetHandleVerifier [0x00007FF674077072+110866]
+	GetHandleVerifier [0x00007FF67405D479+5401]
+	BaseThreadInitThunk [0x00007FFD8E42E8D7+23]
+	RtlUserThreadStart [0x00007FFD903D14FC+44]
+"
+55948145226,não enviado,sem erros
+559492297806,não enviado,sem erros
